@@ -12,7 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/dashboard.css"/>
      <link rel="stylesheet" href="css/post.css"/>
- 
+        <link rel="stylesheet" href="css/manage-profile.css" />
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 
@@ -48,32 +48,40 @@
 
                         <ul  class="d-flex nav-menu">
                             <li class="menu-pill">
-                            <asp:Button Class="btn-menu" ID="btndashboard" OnClick="btndashboard_Click" runat="server" Text="Dashboard" />
+                            <asp:Button Class="btn-menu" ID="btndashboard" CausesValidation="false" OnClick="btndashboard_Click" runat="server" Text="Dashboard" />
                                 </li>
                             <li class="menu-pill">
-                               <asp:Button Class="btn-menu" ID="btnpost" OnClick="btnpost_Click" runat="server" Text="Publish Post" />
+                               <asp:Button Class="btn-menu" ID="btnpost" CausesValidation="false" OnClick="btnpost_Click" runat="server" Text="Publish Post" />
                             </li>
+                             <li class="menu-pill">
+                             <asp:Button runat="server" ID="btnabout" Text="About Us" CausesValidation="false" OnClick="btnabout_Click" class="btn-menu"></asp:Button>
+                              </li>
+                              <li runat="server" id="divsignin" class="menu-pill">
+                             <asp:Button runat="server" ID="btnsignin" Text="Sign In" CausesValidation="false" OnClick="btnsignin_Click" class=" btn-sigin btn-menu"></asp:Button>
+                              </li>
+                        
                         </ul>
                     </div>
-                    <div class="my-profile d-flex align-items-center mb-10">
-                        <div class="profile-name d-flex align-items-center ml-10"><span  class="pr-5">Hi,
-
-                                                                                  </span><label
-                                class="mb-0">Meet</span></label>
+                    <div runat="server" id="divprofile" class="my-profile d-flex align-items-center mb-10">
+                        <div class="profile-name d-flex align-items-center ml-10"><span  class="pr-5">Hi,</span>
+                            <asp:label runat="server" ID="lblname1"  class="mb-0"></asp:label>
                             <div class="profile-img pl-10">
                                 <img src="images/profile-icon.svg" alt="profile-icon" class="profile-icon">
                                 <div class="profile-info">
                                     <div class="my-name text-center">
                                         <div class="mb-5"><span class="color-black font-16">Hello,</span></div>
-                                        <div><span class="font-500 color-black font-18">Meet Patel</span></div>
+                                        <div><asp:Label runat="server" ID="lblname2" class="font-500 color-black font-18"></asp:Label></div>
                                     </div>
-                                    <div class="mt-10 text-center"><asp:Button runat="server" Text="Manage Profile" class="btn-grey"></asp:Button></div>
-                                    <div class="mt-10 text-center"><button type="button" class="btn-grey">View
-                                            Post</button></div>
-                                </div>
+                                    <div class="mt-10 text-center"><asp:Button ID="btnprofile" runat="server" Text="Manage Profile" OnClick="btnprofile_Click" class="btn-grey"></asp:Button></div>
+                                    <div class="mt-10 text-center"><asp:Button runat="server" ID="btnmypost" Text="ViewPost" OnClick="btnmypost_Click" class="btn-grey"></asp:Button></div>
+                                    <div class="mt-10 text-center"><asp:Button runat="server" ID="btnlogout" Text="Logout" OnClick="btnlogout_Click" class="btn-signout"></asp:Button></div>
+                              
+                                    </div>
                             </div>
                         </div>
                     </div>
+              
+                
                 </div>
             </div>
         
