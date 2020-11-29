@@ -61,7 +61,15 @@
     align-items: center;
     justify-content: center;
 }
-body{
+.border-top {
+    border-top:1px solid #cccccc;
+    width: 80px;
+}
+.login-text {
+    color: #52b377;
+    font-weight: 600;
+}
+body {
     background-color: #F5F5F5;
 }
 .post-body{
@@ -88,7 +96,7 @@ body{
 .btn-signup{
     background-color: transparent;
     border: none;
-    color: #8ee4af;
+    color: #3c919e;
 }
 .color-black{
     color: #565656;
@@ -108,12 +116,12 @@ body{
     border-radius: 5px;
     height: 40px;
 }
-::placeholder{
+::-webkit-input-placeholder {
     font-style: italic;
 }
 .btn-primary{
-    background-color: #8ee4af;
-    border: 1px solid #8ee4af;
+    background-color: #3c919e;
+    border: 1px solid #3c919e;
     color: #ffffff;
     border-radius: 8px;
     padding: 5px 10px;
@@ -122,25 +130,25 @@ body{
 }
 .btn-primary:hover{
     background-color: #ffffff;
-    border: 1px solid #8ee4af;
-    color: #8ee4af;
+    border: 1px solid #3c919e;
+    color: #3c919e;
 }
 .btn-secondary{
     background-color: #ffffff;
-    border: 1px solid #8ee4af;
-    color: #8ee4af;
+    border: 1px solid #3c919e;
+    color: #3c919e;
     border-radius: 8px;
     padding: 5px 10px;
     width: 150px;
     box-shadow: 1px 1px 6px rgba(0, 0, 0, .16);
 }
 .btn-secondary:hover{
-    background-color: #8ee4af;
-    border: 1px solid #8ee4af;
+    background-color: #3c919e;
+    border: 1px solid #3c919e;
     color: #ffffff;
 }
 .card-header {
-    background-color: #8ee4af;
+    background-color: #3c919e;
     padding: 12px 10px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;

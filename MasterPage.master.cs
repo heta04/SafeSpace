@@ -76,6 +76,19 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void btnabout_Click(object sender, EventArgs e)
     {
         
-        Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "popup", "window.open('About/SS_Documentation.pdf' ,'_blank');", true);
+        ScriptManager.RegisterStartupScript(this,this.GetType(), "popup", "window.open('About/SS_Documentation.pdf' ,'_blank');", true);
+    }
+
+    protected void btncovid_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Covid_19.aspx");
+
+    }
+
+    
+    protected void btnlogo_Click(object sender, ImageClickEventArgs e)
+    {
+        Response.Redirect("Dashboard.aspx");
+
     }
 }
