@@ -7,7 +7,44 @@
    
     <script>
 
-       
+        $("[id*=txtDesc]").live("keyup",function () {
+        const settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://community-purgomalum.p.rapidapi.com/containsprofanity?text='" + $("[id*=txtDesc]").val()+"'",
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": "e9f8243caemsh4bc90479a6a7c91p10af77jsne6f9df32a0fd",
+                "x-rapidapi-host": "community-purgomalum.p.rapidapi.com"
+            }
+        };
+
+            $.ajax(settings).done(function (response) {
+                debugger;
+
+                if (response == "true") {
+                    alert("such porfinaity statments are not allowed");
+                    const settings = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": "https://community-purgomalum.p.rapidapi.com/json?text='" + $("[id*=txtDesc]").val() + "'",
+                        "method": "GET",
+                        "headers": {
+                            "x-rapidapi-key": "e9f8243caemsh4bc90479a6a7c91p10af77jsne6f9df32a0fd",
+                            "x-rapidapi-host": "community-purgomalum.p.rapidapi.com"
+                        }
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        debugger;
+                        $("[id*=txtDesc]").val((response["result"].slice(1,-1)));
+                        
+                    });
+
+                }
+        });
+        });
+
         function isDecimalKey(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
             if (charCode != 46 && charCode > 31

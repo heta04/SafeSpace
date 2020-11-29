@@ -12,7 +12,8 @@ public partial class _Default : System.Web.UI.Page
     ConnectionSql con = new ConnectionSql();
     protected void Page_Load(object sender, EventArgs e)
     {
-        display();
+        if(!IsPostBack)
+            display();
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)
@@ -31,7 +32,7 @@ public partial class _Default : System.Web.UI.Page
         s.Add("@Title", txttitle.Text);
         s.Add("@Description", txtDesc.Text);
         s.Add("@ZipCode", txtZip.Text);
-        s.Add("@CId", Session["CId"]);
+        s.Add("@CId", Session["Id"]);
 
 
         int i = con.ExecuteNonQuerySP("SP_Post",s);
@@ -52,6 +53,17 @@ public partial class _Default : System.Web.UI.Page
     protected void btncancel_Click(object sender, EventArgs e)
     {
         txtFName.Text = "";
+        txtLName.Text = "";
+        txtPNo.Text = "";
+        txtProvince.Text = "";
+        txtCity.Text = "";
+        txtAdd.Text = "";
+        txtemail.Text = "";
+        txtDesc.Text = "";
+        txttitle.Text = "";
+        txtZip.Text = "";
+
+
     }
 
 
