@@ -66,7 +66,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnpcancel_Click(object sender, EventArgs e)
     {
-
+       
     }
 
     protected void btnicancel_Click(object sender, EventArgs e)
@@ -106,8 +106,8 @@ public partial class _Default : System.Web.UI.Page
         DataTable dt = con.GetSelectQuety("select * from Registration where Id='" + Session["Id"].ToString() + "'");
         if (dt != null && dt.Rows.Count > 0)
         {
-            txtlname.Text = dt.Rows[0]["FName"].ToString();
-            txtfname.Text = dt.Rows[0]["LName"].ToString();
+            txtfname.Text = dt.Rows[0]["FName"].ToString();
+            txtlname.Text = dt.Rows[0]["LName"].ToString();
             txtemail.Text = dt.Rows[0]["Email"].ToString();
             txtcity.Text = dt.Rows[0]["City"].ToString();
             txtphone.Text = dt.Rows[0]["PNo"].ToString();
