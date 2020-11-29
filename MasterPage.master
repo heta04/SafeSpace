@@ -26,23 +26,26 @@
             font-weight:700;
             border-radius:15px;
             font-size: 18px;
-            padding:5px 30px;
+            padding:5px 18px;
         }
         .btn-menu:hover{
-           background-color:#ffffff;
-           color:#8ee4af;
+            background-color:#ffffff;
+            color:#3c919e;
             font-size: 18px;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
+           <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        
           <div class="dashboard-panel">
         <div class="container-fluid pl-0 pr-0">
             <div class="dashboard-header d-flex align-items-center justify-content-between position-relative">
                 <div>
-                    <img class="logo-img" src="Images/logo-img.png" />
+                    <asp:ImageButton runat="server" ID="btnlogo" class="logo-img" src="Images/logo-img.png" OnClick="btnlogo_Click" CausesValidation="false" />
                 </div>
+
                 <div class="d-flex">
                     <div class="d-flex align-items-center">
 
@@ -54,7 +57,10 @@
                                <asp:Button Class="btn-menu" ID="btnpost" CausesValidation="false" OnClick="btnpost_Click" runat="server" Text="Publish Post" />
                             </li>
                              <li class="menu-pill">
-                             <asp:Button runat="server" ID="btnabout" Text="About Us" CausesValidation="false" OnClick="btnabout_Click" class="btn-menu"></asp:Button>
+                               <asp:Button Class="btn-menu" ID="btncovid" CausesValidation="false" OnClick="btncovid_Click" runat="server" Text="COVID Analysis" />
+                            </li>
+                             <li class="menu-pill">
+                             <asp:Button runat="server" ID="btnabout" Text="About Us" CausesValidation="false"  OnClick="btnabout_Click" class="btn-menu"></asp:Button>
                               </li>
                               <li runat="server" id="divsignin" class="menu-pill">
                              <asp:Button runat="server" ID="btnsignin" Text="Sign In" CausesValidation="false" OnClick="btnsignin_Click" class=" btn-sigin btn-menu"></asp:Button>
@@ -72,9 +78,9 @@
                                         <div class="mb-5"><span class="color-black font-16">Hello,</span></div>
                                         <div><asp:Label runat="server" ID="lblname2" class="font-500 color-black font-18"></asp:Label></div>
                                     </div>
-                                    <div class="mt-10 text-center"><asp:Button ID="btnprofile" runat="server" Text="Manage Profile" OnClick="btnprofile_Click" class="btn-grey"></asp:Button></div>
-                                    <div class="mt-10 text-center"><asp:Button runat="server" ID="btnmypost" Text="ViewPost" OnClick="btnmypost_Click" class="btn-grey"></asp:Button></div>
-                                    <div class="mt-10 text-center"><asp:Button runat="server" ID="btnlogout" Text="Logout" OnClick="btnlogout_Click" class="btn-signout"></asp:Button></div>
+                                    <div class="mt-10 text-center"><asp:Button ID="btnprofile" runat="server" Text="Manage Profile" OnClick="btnprofile_Click" class="btn-grey" CausesValidation="false"></asp:Button></div>
+                                    <div class="mt-10 text-center"><asp:Button runat="server" ID="btnmypost" Text="ViewPost" OnClick="btnmypost_Click" class="btn-grey" CausesValidation="false"></asp:Button></div>
+                                    <div class="mt-10 text-center"><asp:Button runat="server" ID="btnlogout" Text="Logout" OnClick="btnlogout_Click" class="btn-signout" CausesValidation="false"></asp:Button></div>
                               
                                     </div>
                             </div>
@@ -88,13 +94,18 @@
 
 
         <div>
-        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
         </div>
 
     </div>
-              </div>
+ </div>
+           <footer style="text-align:center;padding:30px 10px">
+         © Copyright 2020, All Rights Reserved
+      </footer>
+
     </form>
+      
 </body>
 </html>

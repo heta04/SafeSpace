@@ -12,7 +12,8 @@ public partial class _Default : System.Web.UI.Page
     ConnectionSql con = new ConnectionSql();
     protected void Page_Load(object sender, EventArgs e)
     {
-        display();
+        if (!IsPostBack)
+                display();
     }
 
     public void display()
@@ -32,5 +33,20 @@ public partial class _Default : System.Web.UI.Page
     protected void lnkimage_Click(object sender, EventArgs e)
     {
 
+    }
+
+    protected void txtsearch_TextChanged(object sender, EventArgs e)
+    {
+        //txtsearch.Attributes.Add("onkeydown", "return (event.keyCode!=13);");
+
+        string query = "select *,DATEDIFF(DAY, IDate,cast(getdate() as date))" +
+        "AS days from dbo.Post where City like '%" + txtsearch.Text + "%'or " +
+       "Province like  '%" + txtsearch.Text + "%' or category like '%" + txtsearch.Text + "%' "+
+       "or Title like '%" + txtsearch.Text + "%'";
+
+        DataTable dt = con.GetSelectQuety(query);
+        
+        datalist1.DataSource = dt;
+        datalist1.DataBind();
     }
 }
