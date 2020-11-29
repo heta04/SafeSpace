@@ -15,11 +15,15 @@ public partial class _Default : System.Web.UI.Page
         Button btndashboard = (Button)Page.Master.FindControl("btndashboard");
         Button btnpost = (Button)Page.Master.FindControl("btnpost");
         Button btnsignin = (Button)Page.Master.FindControl("btnsignin");
+        Button btncovid = (Button)Page.Master.FindControl("btncovid");
+        Button btnabout = (Button)Page.Master.FindControl("btnabout");
 
 
         btndashboard.Visible = false;
         btnpost.Visible = false;
         btnsignin.Visible = false;
+        btnabout.Visible = false;
+        btncovid.Visible = false;
 
     }
 
@@ -57,6 +61,14 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
+        txtfname.Text = "";
+        txtlname.Text = "";
+        txtemail.Text = "";
+        txtcity.Text = "";
+        txtpnumber.Text = "";
+        txtpass.Text = "";
+        txtrpass.Text = "";
+
 
     }
 

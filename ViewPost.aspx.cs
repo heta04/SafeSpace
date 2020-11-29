@@ -7,21 +7,23 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 public partial class _Default : System.Web.UI.Page
 {
     ConnectionSql con = new ConnectionSql();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack)
-        display();
+       // ScriptManager.RegisterStartupScript(this, GetType(), "alert", "myfunction();", true);
+
+
+        if (!IsPostBack) 
+            display();
     }
 
 
     public void display()
     {
-        SortedList s = new SortedList();
-        s.Add("@mode", "Display");
-        DataTable dt = con.GetDataTableSP("SP_Post", s);
+        DataTable dt = con.GetSelectQuety("Select * from Post where CId='"+Session["Id"].ToString()+"'");
         if (dt != null && dt.Rows.Count > 0)
         {
             GridView1.DataSource = dt;
@@ -53,17 +55,19 @@ public partial class _Default : System.Web.UI.Page
         s.Add("@Title", txttitle.Text);
         s.Add("@Description", txtDesc.Text);
         s.Add("@ZipCode", txtzipcode.Text);
-        s.Add("@CId", ViewState["CId"]);
+        s.Add("@Id", ViewState["Id"]);
 
 
-        int i = con.ExecuteNonQuerySP("SP_Post", s);
+        int i = con.ExecuteNonQuerySP("sp_post", s);
         if (i > 0)
         {
-            Label1.Text = "Data updated successfully"; 
+            Response.Write("<script>alert('data updated succesfully');</script>");
+
+            display();
         }
 
         else
-            Label1.Text = "some error encountered";
+            Response.Write("<script>alert('some error occured !!!');</script>");
 
     }
 
@@ -74,15 +78,17 @@ public partial class _Default : System.Web.UI.Page
 
     public void display2()
     {
-        DataTable dt = con.GetSelectQuety("select * from Post where CId='" + ViewState["CId"] + "'");
+        DataTable dt = con.GetSelectQuety("select * from Post where Id='" + ViewState["Id"].ToString() + "'");
         if(dt!=null && dt.Rows.Count > 0)
         {
+            Response.Write("<script>alert('some error occured !!!');</script>");
+
             txtfname.Text = dt.Rows[0]["FName"].ToString();
-            txtlname.Text= dt.Rows[0]["LName"].ToString(); ;
-            txtemail.Text = dt.Rows[0]["Email"].ToString(); ;
-            txtpno.Text  = dt.Rows[0]["PNo"].ToString(); ;
-            txtadd.Text = dt.Rows[0]["Address"].ToString(); ;
-            txtcity.Text = dt.Rows[0]["City"].ToString(); ;
+            txtlname.Text= dt.Rows[0]["LName"].ToString(); 
+            txtemail.Text = dt.Rows[0]["Email"].ToString(); 
+            txtpno.Text  = dt.Rows[0]["PNo"].ToString(); 
+            txtadd.Text = dt.Rows[0]["Address"].ToString(); 
+            txtcity.Text = dt.Rows[0]["City"].ToString(); 
             txtcountry.Text = dt.Rows[0]["Country"].ToString(); 
             txtprovince.Text= dt.Rows[0]["Province"].ToString(); 
             ddlcatageory.Text= dt.Rows[0]["category"].ToString(); 
@@ -90,43 +96,47 @@ public partial class _Default : System.Web.UI.Page
             txtDesc.Text= dt.Rows[0]["Description"].ToString(); 
             txtzipcode.Text= dt.Rows[0]["ZipCode"].ToString();
 
-
-            txtfname.Enabled = false;
-            txtlname.Enabled = false;
-            txtemail.Enabled = false;
-            txtpno.Enabled = false;
-            txtadd.Enabled = false;
-            txtcity.Enabled = false;
-            txtcountry.Enabled = false;
-            txtprovince.Enabled = false;
-            ddlcatageory.Enabled = false;
-            txttitle.Enabled = false;
-            txtDesc.Enabled = false;
-            txtzipcode.Enabled = false;
+        //    txtfname.ReadOnly = true;
+        //    txtlname.ReadOnly = true;
+        //    txtemail.ReadOnly = true;
+        //    txtpno.ReadOnly = true;
+        //    txtadd.ReadOnly = true;
+        //    txtcity.ReadOnly = true;
+        //    txtcountry.ReadOnly = true;
+        //    txtprovince.ReadOnly = true;
+        //    txttitle.ReadOnly = true;
+        //    txtDesc.ReadOnly = true;
+        //    txtzipcode.ReadOnly = true;
         }
     }
 
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        ViewState["CId"] = null;
+        ViewState["Id"] = null;
         if (e.CommandName.ToString() == "Editclick")
         {
-            ViewState["CId"] = e.CommandArgument.ToString();
-            divpopup.Style.Add("display", "block");
+
+            ViewState["Id"] = e.CommandArgument.ToString();
+            mp1.Show();
+            display2();
+
+            
+            
+
         }
         else if (e.CommandName.ToString() == "Viewclick")
         {
-            ViewState["CId"] = e.CommandArgument.ToString();
-            divpopup.Style.Add("display", "block");
-
+            ViewState["Id"] = e.CommandArgument.ToString();
+          
             btnupdate.Visible = false;
             btncancel.Visible = false;
+            mp1.Show();
             display2();
         }
         else if (e.CommandName.ToString() == "Deleteclick")
         {
-            ViewState["CId"] = e.CommandArgument.ToString();
-            int i = con.ExecuteNonQuery1("Delete from Post where CId='" + ViewState["CId"].ToString() + "'");
+            ViewState["Id"] = e.CommandArgument.ToString();
+            int i = con.ExecuteNonQuery1("Delete from Post where Id='" + ViewState["Id"].ToString() + "'");
             if (i > 0)
             {
                 Response.Write("<script>alert('data deleted successfully');</script>");
@@ -143,6 +153,11 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnedit_Click(object sender, ImageClickEventArgs e)
     {
-        divpopup.Style.Add("display", "block");
+       // divpopup.Style.Add("display", "block");
+    }
+
+    protected void Unnamed_Click(object sender, ImageClickEventArgs e)
+    {
+
     }
 }
